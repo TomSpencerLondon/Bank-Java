@@ -18,7 +18,12 @@ public class BankAccountFeature {
   @Mock
   private Console console;
 
-  private AccountService service = new AccountService(console);
+  private AccountService service;
+
+  @BeforeEach
+  void setUp() {
+    service = new AccountService(console);
+  }
 
   @Test
   void prints_empty_statement() {
