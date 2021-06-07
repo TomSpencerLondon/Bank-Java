@@ -9,23 +9,25 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class BankAccountFeature {
-//  Date       || Amount || Balance
-//14/01/2012 || -500   || 2500
-//    13/01/2012 || 2000   || 3000
-//    10/01/2012 || 1000   || 1000
+public class AcountServiceTest {
 
   @Mock
   private Console console;
 
-  private AccountService service = new AccountService(console);
+  private AccountService service;
+
+  @BeforeEach
+  void setUp() {
+    service = new AccountService(console);
+  }
 
   @Test
-  void prints_empty_statement() {
+  void print_calls_console() {
+    // act
+    service.print();
+    // assert
     String s = "Date       || Amount || Balance";
 
-    service.print();
-
     verify(console).print(s);
- }
+  }
 }
