@@ -12,7 +12,7 @@ public class Repository {
   }
 
   public void withdraw(int amount) {
-    throw new UnsupportedOperationException("Implement me!");
+    transactions.add(new Transaction(-amount));
   }
 
   public List<Transaction> getTransactions() {
