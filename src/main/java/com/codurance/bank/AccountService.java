@@ -3,9 +3,11 @@ package com.codurance.bank;
 public class AccountService {
 
   private final Console console;
+  private final Repository repository;
 
-  public AccountService(Console console) {
+  public AccountService(Console console, Repository repository) {
     this.console = console;
+    this.repository = repository;
   }
 
 
@@ -15,8 +17,10 @@ public class AccountService {
   }
 
   public void deposit(int money) {
+    repository.deposit(money);
   }
 
   public void withdraw(int money) {
+    repository.withdraw(money);
   }
 }

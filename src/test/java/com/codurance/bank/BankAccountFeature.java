@@ -21,9 +21,11 @@ public class BankAccountFeature {
 
   private AccountService service;
 
+  private Repository repository = new Repository();
+
   @BeforeEach
   void setUp() {
-    service = new AccountService(console);
+    service = new AccountService(console, repository);
   }
 
   @Test

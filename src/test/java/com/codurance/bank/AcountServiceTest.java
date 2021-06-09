@@ -12,13 +12,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class AcountServiceTest {
 
   @Mock
+  Repository repository;
+
+  @Mock
   private Console console;
 
   private AccountService service;
 
   @BeforeEach
   void setUp() {
-    service = new AccountService(console);
+    service = new AccountService(console, repository);
   }
 
   @Test
@@ -34,10 +37,12 @@ public class AcountServiceTest {
   @Test
   void should_deposit_money() {
       service.deposit(500);
+      verify(repository).deposit(500);
   }
 
   @Test
   void should_withdraw_money() {
-      service.withdraw(300);
+    service.withdraw(300);
+    verify(repository).withdraw(300);
   }
 }
