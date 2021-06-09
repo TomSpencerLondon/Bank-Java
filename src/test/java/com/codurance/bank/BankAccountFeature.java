@@ -21,7 +21,10 @@ public class BankAccountFeature {
 
   private AccountService service;
 
-  private Repository repository = new Repository();
+  @Mock
+  private Clock clock;
+
+  private Repository repository = new Repository(clock);
 
   @BeforeEach
   void setUp() {
@@ -30,9 +33,7 @@ public class BankAccountFeature {
 
   @Test
   void prints_empty_statement() {
-
     service.print();
-
     verify(console).print(HEADER);
  }
 
@@ -45,5 +46,7 @@ public class BankAccountFeature {
 
     verify(console).print(HEADER);
     verify(console).print("14/01/2012 -500 2500");
+    verify(console).print("13/01/2012 2000 3000");
+    verify(console).print("10/01/2012 1000 1000");
  }
 }
