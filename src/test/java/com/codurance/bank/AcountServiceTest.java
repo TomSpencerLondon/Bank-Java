@@ -30,4 +30,14 @@ public class AcountServiceTest {
 
     verify(console).print(s);
   }
+
+  @Test
+  void should_deposit_money() {
+      service.deposit(500);
+  }
+
+  @Test
+  void should_withdraw_money() {
+      service.withdraw(300);
+  }
 }

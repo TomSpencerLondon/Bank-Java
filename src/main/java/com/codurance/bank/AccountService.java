@@ -13,4 +13,10 @@ public class AccountService {
     String header = "Date       || Amount || Balance";
     console.print(header);
   }
+
+  public void deposit(int money) {
+  }
+
+  public void withdraw(int money) {
+  }
 }

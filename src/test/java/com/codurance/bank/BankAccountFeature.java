@@ -14,6 +14,7 @@ public class BankAccountFeature {
 //14/01/2012 || -500   || 2500
 //    13/01/2012 || 2000   || 3000
 //    10/01/2012 || 1000   || 1000
+    private static final String HEADER = "Date       || Amount || Balance";
 
   @Mock
   private Console console;
@@ -27,10 +28,20 @@ public class BankAccountFeature {
 
   @Test
   void prints_empty_statement() {
-    String s = "Date       || Amount || Balance";
 
     service.print();
 
-    verify(console).print(s);
+    verify(console).print(HEADER);
+ }
+
+ @Test
+ void prints_statement_with_records() {
+     service.deposit(1000);
+     service.deposit(2000);
+     service.withdraw(500);
+     service.print();
+
+    verify(console).print(HEADER);
+    verify(console).print("14/01/2012 -500 2500");
  }
 }
