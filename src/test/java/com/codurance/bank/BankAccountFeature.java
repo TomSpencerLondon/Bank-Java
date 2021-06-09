@@ -1,7 +1,9 @@
 package com.codurance.bank;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,10 +26,11 @@ public class BankAccountFeature {
   @Mock
   private Clock clock;
 
-  private Repository repository = new Repository(clock);
+  private Repository repository;
 
   @BeforeEach
   void setUp() {
+    repository = new Repository(clock);
     service = new AccountService(console, repository);
   }
 
@@ -39,10 +42,15 @@ public class BankAccountFeature {
 
  @Test
  void prints_statement_with_records() {
-     service.deposit(1000);
-     service.deposit(2000);
-     service.withdraw(500);
-     service.print();
+    when(clock.date())
+        .thenReturn(LocalDate.of(2012, 01, 10))
+        .thenReturn(LocalDate.of(2012, 01, 13))
+        .thenReturn(LocalDate.of(2012, 01, 14));
+
+    service.deposit(1000);
+    service.deposit(2000);
+    service.withdraw(500);
+    service.print();
 
     verify(console).print(HEADER);
     verify(console).print("14/01/2012 -500 2500");
