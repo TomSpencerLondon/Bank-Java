@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class Transaction {
 
-  private final int amount;
-  private final LocalDate date;
+  public final int amount;
+  public final LocalDate date;
 
   public Transaction(int amount, LocalDate date) {
     this.amount = amount;
@@ -24,4 +24,5 @@ public class Transaction {
   public int hashCode() {
     return reflectionHashCode(this);
   }
+
 }
